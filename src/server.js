@@ -5,6 +5,8 @@ const AppError = require("./utils/AppError")
 
 const uploadConfig = require("./configs/upload");
 
+const cors = require("cors");
+
 const express = require("express");
 
 const routes = require("./routes"); /* If there isn't any name specifying the file, it will automatically open index.js */
@@ -12,6 +14,7 @@ const routes = require("./routes"); /* If there isn't any name specifying the fi
 migrationsRun();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));
